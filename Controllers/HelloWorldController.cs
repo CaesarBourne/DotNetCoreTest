@@ -10,8 +10,9 @@ public class HelloWorldController : Controller
         return "This is Emmanuel";
     }
 
-    public string Welcome()
+    public string Welcome(string name, int clicked = 1)
     {
-        return "My Data ";
+
+        return HtmlEncoder.Default.Encode($"This is user new name {name} this is the name  {clicked}");
     }
 }
