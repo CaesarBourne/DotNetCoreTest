@@ -10,9 +10,12 @@ public class HelloWorldController : Controller
         return View();
     }
 
-    public string Welcome(string name, int clicked = 1)
+    public IActionResult Welcome(string name, int clicked = 1)
     {
 
-        return HtmlEncoder.Default.Encode($"This is user new name {name} this is the name  {clicked}");
+        ViewData["Message"] = "Hello this is user {name}";
+        ViewData["NumberValue"] = clicked;
+        return View();
+        // return HtmlEncoder.Default.Encode($"This is user new name {name} this is the name  {clicked}");
     }
 }

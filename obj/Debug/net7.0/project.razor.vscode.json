@@ -24065,6 +24065,11 @@
       "FilePath": "/Users/caesar/Documents/PROJECTS/CaesarMovie/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/caesar/Documents/PROJECTS/CaesarMovie/Views/HelloWorld/Welcome.cshtml",
+      "TargetPath": "Views\\HelloWorld\\Welcome.cshtml",
+      "FileKind": "mvc"
     }
   ]
 }
