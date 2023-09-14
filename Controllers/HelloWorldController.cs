@@ -5,9 +5,9 @@ namespace CaesarMovie.Controllers;
 
 public class HelloWorldController : Controller
 {
-    public string Index()
+    public IActionResult Index()
     {
-        return "This is Emmanuel";
+        return View();
     }
 
     public string Welcome(string name, int clicked = 1)
