@@ -7,9 +7,9 @@ using CaesarMovie.Models;
 
 namespace CaesarMovie.Data
 {
-    public class MvcMovieContext : DbContext
+    public class CaesarMovieContext : DbContext
     {
-        public MvcMovieContext (DbContextOptions<MvcMovieContext> options)
+        public CaesarMovieContext(DbContextOptions<CaesarMovieContext> options)
             : base(options)
         {
         }
