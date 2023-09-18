@@ -2,12 +2,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CaesarMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+builder.Services.AddDbContext<CaesarMovieContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("CaesarMovieContext") ?? throw new InvalidOperationException("Connection string 'CaesarMovieContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//set database for test and production
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<CaesarMovieContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("CaesarMovieContext")));
+}
+else
+{
+    builder.Services.AddDbContext<CaesarMovieContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionCaesarMovieContext")));
+}
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
