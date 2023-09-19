@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CaesarMovie.Data;
+using CaesarMovie.Models;
+// using CaesarMovie.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CaesarMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("CaesarMovieContext") ?? throw new InvalidOperationException("Connection string 'CaesarMovieContext' not found.")));
@@ -20,6 +23,13 @@ else
     options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionCaesarMovieContext")));
 }
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
