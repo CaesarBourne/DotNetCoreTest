@@ -20,11 +20,20 @@ namespace CaesarMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchSstring)
         {
-            return _context.Movie != null ?
-                        View(await _context.Movie.ToListAsync()) :
-                        Problem("Entity set 'CaesarMovieContext.Movie'  is null.");
+            if (_context.Movie == null)
+            {
+                return Problem("Enitity set Caesar CaesarMovieContext is null");
+            }
+            var moviesList = from m in _context.Movie select m;
+
+            if (!String.IsNullOrEmpty(searchSstring))
+            {
+                moviesList = moviesList.Where(s => s.Title.Contains(searchSstring));
+            }
+            return View(await moviesList.ToListAsync());
+
         }
 
         // GET: Movies/Details/5
