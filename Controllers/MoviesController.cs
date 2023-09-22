@@ -22,7 +22,7 @@ namespace CaesarMovie.Controllers
 
         // GET: Movies
         [HttpPost]
-        public async Task<IActionResult> Index(string searchString, bool notUsed)
+        public async Task<IActionResult> Index(string searchString, string movieGenre)
         {
             if (_context.Movie == null)
             {
@@ -39,6 +39,15 @@ namespace CaesarMovie.Controllers
             {
                 moviesList = moviesList.Where(s => s.Title!.Contains(searchString));
             }
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                moviesList = moviesList.Where(g => g.Genre == movieGenre);
+            }
+            var movieGenreViewModel = new MovieGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Movies = await moviesList.ToListAsync()
+            };
             return View(await moviesList.ToListAsync());
 
 
