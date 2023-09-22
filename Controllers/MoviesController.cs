@@ -20,17 +20,18 @@ namespace CaesarMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string searchSstring)
+        public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Movie == null)
             {
                 return Problem("Enitity set Caesar CaesarMovieContext is null");
             }
+            //query is ony defined here but not run yet on database
             var moviesList = from m in _context.Movie select m;
 
-            if (!String.IsNullOrEmpty(searchSstring))
+            if (!String.IsNullOrEmpty(searchString))
             {
-                moviesList = moviesList.Where(s => s.Title.Contains(searchSstring));
+                moviesList = moviesList.Where(s => s.Title!.Contains(searchString));
             }
             return View(await moviesList.ToListAsync());
 
