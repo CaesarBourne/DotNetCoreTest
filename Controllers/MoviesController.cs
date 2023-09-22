@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CaesarMovie.Data;
 using CaesarMovie.Models;
+using Microsoft.Identity.Client;
 
 namespace CaesarMovie.Controllers
 {
@@ -20,12 +21,17 @@ namespace CaesarMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string searchString)
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString, bool notUsed)
         {
             if (_context.Movie == null)
             {
                 return Problem("Enitity set Caesar CaesarMovieContext is null");
             }
+            //using LINQ to get list of genres
+            IQueryable<string> genreQuery = from m in _context.Movie
+                                            orderby m.Genre
+                                            select m.Genre;
             //query is ony defined here but not run yet on database
             var moviesList = from m in _context.Movie select m;
 
@@ -35,7 +41,13 @@ namespace CaesarMovie.Controllers
             }
             return View(await moviesList.ToListAsync());
 
+
         }
+
+        //   public string Index(string searchString, bool notUsed)
+        //     {
+        //         return "From HTTP POST INDEX FILER ON " + searchString;
+        //     }
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
