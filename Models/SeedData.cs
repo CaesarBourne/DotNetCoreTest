@@ -23,6 +23,7 @@ public static class SeedData
                     Title = "Caesar the Top Engineer",
                     ReleaseDate = DateTime.Parse("1991-11-10"),
                     Genre = "Thriller",
+                    Rating = "R",
                     Price = 12.45M
                 },
                  new Movie
