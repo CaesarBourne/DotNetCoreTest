@@ -53,7 +53,8 @@ nunit-*.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
-
+ #idiots didnt add bin to gitignore so i am adding
+ bin/
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
