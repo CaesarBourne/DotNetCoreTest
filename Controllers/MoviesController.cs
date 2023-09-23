@@ -21,7 +21,6 @@ namespace CaesarMovie.Controllers
         }
 
         // GET: Movies
-        [HttpPost]
         public async Task<IActionResult> Index(string searchString, string movieGenre)
         {
             if (_context.Movie == null)
@@ -48,7 +47,7 @@ namespace CaesarMovie.Controllers
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Movies = await moviesList.ToListAsync()
             };
-            return View(await moviesList.ToListAsync());
+            return View(movieGenreViewModel);
 
 
         }
