@@ -31,6 +31,7 @@ public static class SeedData
                      Title = "Tobi and Ifemi",
                      ReleaseDate = DateTime.Parse("1989-09-15"),
                      Genre = "Thriller",
+                     Rating = "R",
                      Price = 72.08M
                  },
                  new Movie
@@ -38,6 +39,7 @@ public static class SeedData
                      Title = "Ife the stubborn",
                      ReleaseDate = DateTime.Parse("1996-06-09"),
                      Genre = "Comedy",
+                     Rating = "R",
                      Price = 8.27M
                  },
                  new Movie
@@ -45,6 +47,7 @@ public static class SeedData
                      Title = "David Dreamer",
                      ReleaseDate = DateTime.Parse("1999-04-02"),
                      Genre = "Romance",
+                     Rating = "R",
                      Price = 11.11M
                  }
             );
